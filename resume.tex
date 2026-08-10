@@ -1,5 +1,102 @@
-\documentclass{article}
+\documentclass[9pt]{article}
+\pagestyle{empty}
+
+\usepackage{hyperref}
+\usepackage[margin=0.45in]{geometry}
+\usepackage[sfdefault]{carlito}
+\usepackage{setspace}
+\setstretch{0.92}
+\usepackage{scalefnt}
+
+\newcommand{\resumesection}[1]{\noindent\underline{\makebox[\textwidth][l]{\scalefont{1.1}\textbf{#1}}}}
 
 \begin{document}
-Test Content
+
+\begin{center}
+    {\Huge \textbf{Kedar Panchal}} \\ [0.5em]
+    \small US Citizen {\textbar } 
+    \small TS/SCI Clearance {\textbar } 
+    \small \href{mailto:kedar.t.panchal@outlook.com}{kedar.t.panchal@outlook.com} {\textbar } 
+    \small 737-205-9033 {\textbar } 
+    \small Website: \href{https://www.kedarpanchal.dev}{kedarpanchal.dev} {\textbar }
+    \small LinkedIn: \href{https://www.linkedin.com/in/kedarpanchal/}{kedarpanchal} \\
+    \small GitHub: \href{https://www.github.com/KedarPanchal}{KedarPanchal} {\textbar }
+    \small Hugging Face: \href{https://huggingface.co/KedarPanchal}{KedarPanchal}
+\end{center}
+
+\resumesection{EDUCATION}
+\textbf{Texas A\&M University} \hfill College Station, TX \\
+\textit{Bachelor of Science in Computer Science} \hfill \textit{August 2025 - May 2028} 
+\begin{itemize}
+    \item \textbf{GPA:} 4.0
+    \item \textbf{Relevant Coursework:} Data Structures and Algorithms, Computer Organization, Programming Languages,
+        Program Systems and Design, Linear Algebra, Discrete Math, Statistics
+\end{itemize}
+
+\resumesection{EXPERIENCE}
+\noindent\textbf{Northrop Grumman} \hfill San Antonio, TX \\
+\textit{Cyber Software Intern} \hfill \textit{June 2026 - August 2026}
+\begin{itemize}
+    \item Improved code maintainability by developing locally-hosted LangGraph AI agent to translate legacy code to modern languages
+    \item Implemented code execution and self-evaluation capabilities to improve agent performance and accuracy
+    \item Developed GitLab CI/CD pipeline to automate testing, documentation generation, code linting, and deployment of the agent
+    \item Created Ansible playbook to automate deployment of the agent to a configured Linux server
+\end{itemize}
+
+\noindent\textbf{Texas A\&M Department of Computer Science} \hfill College Station, TX \\
+\textit{Research Assistant} \hfill \textit{January 2026 - Present}
+\begin{itemize}
+    \item Conducted research on planning algorithms for blind, unreliable robots
+    \item Developed C++ simulation framework for running and testing planning algorithms
+\end{itemize}
+
+\noindent\textbf{Firelight Innovations} \hfill College Station, TX \\
+\textit{AI Engineer} \hfill \textit{Sep 2025 - Jan 2026}
+\begin{itemize}
+    \item Designed custom AI agents for clients using Python, FastAPI, and LangChain
+    \item Utilized LLM-optimized databases like Redis and ChromaDB to improve response time and context retrieval
+\end{itemize}
+
+\noindent\textbf{MathNMore LLC} \hfill Austin, TX \\
+\textit{Automation Developer} \hfill \textit{Jul 2022 - Jul 2025}
+\begin{itemize}
+    \item Created JavaScript programs to automate issuance of real estate loan payment late notices with 97.5\% efficiency gain
+    \item Wrote documentation and communicated with non-technical team members to smoothly introduce automation tools
+    \item Managed mortgage software and spreadsheets for tracking and logging real estate loan financials
+\end{itemize}
+
+\resumesection{PROJECTS}
+\noindent\textbf{Mr. Breathe} \hfill \textit{Jan 2025}
+\begin{itemize}
+    \item Developed intelligent spirometer to use ML-powered algorithms to detect and classify respiratory diseases
+    \item Implemented custom bluetooth code to connect spirometer to Swift iOS app for real-time data analysis
+    \item Stored user data in a PostgreSQL database and implemented Spring Boot backend to serve data to the app
+\end{itemize}
+
+\noindent\textbf{Hello World From Scratch} \hfill \textit{Sep 2025 - Dec 2025}
+\begin{itemize}
+    \item Developed bare-metal bootloader on ARM Cortex A53 chip to load and execute program from disk
+    \item Wrote FAT32 filesystem and VirtIO disk drivers in C
+\end{itemize}
+
+\noindent\textbf{Fresh Start} \hfill \textit{Oct 2025}
+\begin{itemize}
+    \item Designed cross-platform mobiel and web addiction management app for tidalHack Hackathon with React and Vite
+    \item Developed custom, Dockerized Gemini LLM pipeline using LangChain and deployed to Google Cloud
+\end{itemize}
+
+\noindent\textbf{GIMP AI Inpainter} \hfill \textit{Jan 2025 - Mar 2025}
+\begin{itemize}
+    \item Developed GIMP 3.0 Python plug-in to add Stable Diffusion XL generative AI capabilities to image editor
+    \item Plug-in interacted with GIMP 3.0 API to leverage powerful, local AI models using Hugging Face Diffusers
+\end{itemize}
+
+\resumesection{SKILLS \& CERTIFICATIONS}
+\begin{itemize}
+    \item \textbf{Programming Languages:} Python, C/C++, Java, TypeScript, JavaScript, Bash, HTML/CSS, SQL
+    \item \textbf{Frameworks:} React, FastAPI, LangGraph, Spring Boot, Next.js, CMake
+    \item \textbf{Tools:} Git, Docker, Podman, GitLab CI/CD, Linux, Redis, PostgreSQL
+    \item \textbf{Certifications:} Deep Learning with Python, Microsoft AI \& ML Engineering, PCEP Python Programmer
+\end{itemize}
+
 \end{document}
