@@ -12,9 +12,9 @@ jobs:
     container: 
       image: texlive/texlive:latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: pdflatex -interaction=nonstopmode resume.tex
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: resume-pdf
           path: resume.pdf
@@ -22,7 +22,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v7
         with:
           name: resume-pdf
       - env:
