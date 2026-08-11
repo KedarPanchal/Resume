@@ -1,8 +1,32 @@
 name: Publish Resume
 run-name: ${{ github.actor }} is publishing Kedar Panchal's resume
-on: [push]
+on: 
+  push:
+    branches:
+      - main
+permissions:
+  contents: write
 jobs:
-  Test:
+  build:
+    runs-on: ubuntu-latest
+    container: 
+      image: texlive/texlive:latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pdflatex -interaction=nonstopmode resume.tex
+      - uses: actions/upload-artifact@v4
+        with:
+          name: resume-pdf
+          path: resume.pdf
+
+  release:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Testing to see if this works"
+      - uses: actions/download-artifact@v5
+        with:
+          name: resume-pdf
+      - env:
+          GITHUB_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          gh release create "$TAG" resume.pdf --repo "$GITHUB_REPOSITORY" --title "v$TAG" 
