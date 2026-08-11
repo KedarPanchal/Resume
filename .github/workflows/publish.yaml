@@ -2,6 +2,9 @@ name: Publish Resume
 run-name: ${{ github.actor }} is publishing Kedar Panchal's resume
 on: 
   push:
+    paths:
+      - resume.tex
+      - .github/workflows/publish.yaml
     branches:
       - main
 permissions:
@@ -28,6 +31,6 @@ jobs:
           name: resume-pdf
       - env:
           GITHUB_TOKEN: ${{ github.token }}
-          TAG: ${{ github.ref_name }}
+          NAME: ${{ github.sha }}
         run: |
-          gh release create "$TAG" resume.pdf --repo "$GITHUB_REPOSITORY" --title "v$TAG" 
+          gh release create "$NAME" resume.pdf --repo "$GITHUB_REPOSITORY" --title "vNAME" 
