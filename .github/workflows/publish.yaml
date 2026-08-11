@@ -33,5 +33,5 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
           SHA: ${{ github.sha }}
         run: |
-          NAME="v$(date +'%Y.%m.%d')-${SHA:0:5}"  
+          NAME="$(date +'%Y.%m.%d')-${SHA:0:5}"  
           gh release create "$NAME" resume.pdf --repo "$GITHUB_REPOSITORY" --title "v$NAME" 
