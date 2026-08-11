@@ -31,6 +31,7 @@ jobs:
           name: resume-pdf
       - env:
           GITHUB_TOKEN: ${{ github.token }}
-          NAME: ${{ github.sha }}
+          SHA: ${{ github.sha }}
         run: |
+          NAME="v$(date +'%Y.%m.%d')-${SHA:0:5}"  
           gh release create "$NAME" resume.pdf --repo "$GITHUB_REPOSITORY" --title "vNAME" 
