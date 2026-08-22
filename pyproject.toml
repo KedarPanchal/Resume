@@ -1,0 +1,19 @@
+[project]
+name = "resume"
+version = "0.1.0"
+description = "Scripts to build my resume and portfolio website."
+readme = "README.md"
+authors = [
+    { name = "KedarPanchal", email = "kedar.t.panchal@outlook.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "pyyaml>=6.0.3",
+]
+
+[project.scripts]
+resume = "resume:main"
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"
