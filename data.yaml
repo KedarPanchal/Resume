@@ -1,0 +1,121 @@
+name: Kedar Panchal
+
+info:
+  email: kedar.t.panchal@outlook.com
+  phone: "+1 (737) 205-9033"
+  website: kedarpanchal.dev
+  github: KedarPanchal
+  hugging-face: KedarPanchal
+  linkedin: kedarpanchal
+  miscellaneous:
+    - US Citizen
+    - TS/SCI Clearance
+
+education:
+  university: Texas A&M University
+  degree: Bachelor of Science in Computer Science
+  location: College Station, TX
+  start: "August 2025"
+  end: "May 2028"
+  gpa: 4.0
+  courses:
+    - Software Engineering
+    - Computer Systems
+    - Cryptography
+    - Data Structures and Algorithms
+    - Computer Organization
+    - Programming Languages
+    - Program Systems and Design
+    - Linear Algebra
+    - Statistics
+
+experience:
+  - title: Software Engineer Intern, Mission Systems
+    company: Northrop Grumman
+    location: San Antonio, TX
+    start: "June 2026"
+    end: "August 2026"
+    bullets:
+      - Updated legacy C code to eliminate memory vulnerabilities by architecting and implementing agentic code translation system.
+      - Reduced agent hallucinations by developing self-improving feedback loop that evaluated code and created test cases.
+      - Automated documentation generation, code linting, and deployment by designing GitLab CI/CD pipelines.
+      - Reduced deployment time by creating Ansible playbook to configure multi-container Podman environment on SELinux server.
+      - Communicated project progress to executive stakeholders and demonstrated product to senior leadership.
+  - title: Research Assistant, Department of Computer Science
+    company: Texas A&M University
+    location: College Station, TX
+    start: "January 2026"
+    end: Present
+    bullets:
+      - Conducted research on planning algorithms for blind robots with limited sensing capabilities.
+      - Validated algorithm by implementing simulation environment in C++ and CGAL.
+  - title: AI Engineer
+    company: Firelight Innovations
+    location: College Station, TX
+    start: "September 2025"
+    end: "January 2026"
+    bullets:
+      - Automated live website development during client calls by developing LangChain agent with video conferencing integration.
+      - Improved response time and context retrieval by connecting to LLM-optimized databases such as Redis and ChromaDB.
+  - title: Automation Developer
+    company: MathNMore LLC
+    start: "July 2022"
+    end: "July 2025"
+    bullets:
+     - Reduced loan payment notification time by 97.5% by developing JavaScript programs to automate late notice issuance.
+     - Tracked insurance payments for properties by writing JavaScript programs to interface with existing spreadsheet infrastructure.
+
+projects:
+  - title: "IMC Prosperity 4"
+    start: "April 2026"
+    end: "May 2026"
+    bullets:
+      - Analyzed commodity market data to place within top 2.6% of competitors by building dashboard with Python and Matplotlib.
+      - Classified competing informed traders and detected outliers by implementing k-means clustering and isolation tree algorithms.
+      - Extracted meaningful patterns from noisy time-series data by preprocessing with Fourier transforms and Haar wavelet transforms.
+  - title: Mr. Breathe
+    start: "January 2026"
+    end: "January 2026"
+    bullets:
+      - Detected and classified respiratory diseases by inventing intelligent spirometer.
+      - Interfaced spirometer with Swift iOS app for real-time data analysis using custom bluetooth code.
+      - Served data to app using Spring Boot backend and PostgreSQL database.
+  - title: Hello World from Scratch
+    start: "September 2025"
+    end: "December 2025"
+    bullets:
+      - Developed bare-metal bootloader on ARM Cortex A53 chip to load and execute program from disk.
+      - Wrote FAT32 filesystem and VirtIO disk drivers in C.
+  - title: GIMP AI Inpainter
+    start: "January 2025"
+    end: "March 2025"
+    bullets:
+      - Added generative AI inpainting capabilities to GIMP 3.0 by developing Python plugin that leveraged Hugging Face Diffusers.
+
+skills:
+  languages:
+    - Bash
+    - C/C++
+    - HTML/CSS
+    - Java
+    - Python
+    - SQL
+    - TypeScript/JavaScript
+  frameworks:
+    - FastAPI
+    - LangGraph
+    - Next.js
+    - React
+    - Spring Boot
+  tools:
+    - Docker
+    - Git
+    - GitLab CI/CD
+    - GitHub Actions
+    - Linux
+    - PostgreSQL
+    - Redis
+  certifications:
+    - Deep Learning with Python
+    - Microsoft AI & ML Engineering
+    - PCEP Python Programmer
