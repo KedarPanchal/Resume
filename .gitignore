@@ -1,5 +1,6 @@
 resume.*
 !resume.tex
+!resume.view.yaml
 
 dist
 

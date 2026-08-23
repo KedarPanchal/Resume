@@ -28,6 +28,7 @@ education:
     - Program Systems and Design
     - Linear Algebra
     - Statistics
+    - Multivariable Calculus
 
 experience:
   - title: Software Engineer Intern, Mission Systems
@@ -96,6 +97,7 @@ skills:
   languages:
     - Bash
     - C/C++
+    - Haskell
     - HTML/CSS
     - Java
     - Python
@@ -115,7 +117,8 @@ skills:
     - Linux
     - PostgreSQL
     - Redis
-  certifications:
-    - Deep Learning with Python
-    - Microsoft AI & ML Engineering
-    - PCEP Python Programmer
+
+certifications:
+  - Deep Learning with Python
+  - Microsoft AI & ML Engineering
+  - PCEP Python Programmer
