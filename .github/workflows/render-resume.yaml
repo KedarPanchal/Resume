@@ -5,6 +5,7 @@ on:
     paths:
       - data.yaml
       - resume.view.yaml
+      - .github/workflows/render-resume.yaml
 permissions:
   contents: write
 jobs:
