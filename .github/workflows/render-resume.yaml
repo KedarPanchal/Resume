@@ -31,7 +31,7 @@ jobs:
       - uses: actions/download-artifact@v7
         with:
           name: resume-tex
-      - run: pdflatex -interaction=nonstopmode dist/resume.tex
+      - run: pdflatex -interaction=nonstopmode resume.tex
       - uses: actions/upload-artifact@v7
         with:
           name: resume-pdf
