@@ -1,8 +1,8 @@
 import yaml
 from abc import ABC, abstractmethod
 from enum import Enum
-
-from yaml_parser import YamlParser
+from types import SimpleNamespace
+from .yaml_parser import YamlParser
 
 
 class Section(Enum):
@@ -20,11 +20,14 @@ class Renderer(ABC):
         pass
 
     @abstractmethod
-    def render(self, src: str, dest: str) -> None:
+    def render(self, src: SimpleNamespace) -> None:
         pass
 
 
 class LatexRenderer(Renderer):
+    def __init__(self, dest: str):
+        self._dest = dest
+
     def section_ordering(self) -> dict[Section, int]:
         return {
             Section.INFO: 0,
@@ -41,20 +44,56 @@ class LatexRenderer(Renderer):
 \pagestyle{empty}
 
 \usepackage[hidelinks]{hyperref}
+\usepackage[none]{hyphenat}
+\raggedright
 \usepackage[margin=0.45in]{geometry}
 \usepackage[sfdefault]{carlito}
 \usepackage{setspace}
 \setstretch{0.92}
 \usepackage{scalefnt}
 
-\newcommand{\resumeSection}[1]{\noindent\underline{\makebox[\textwidth][l]{\scalefont{1.1}\textbf{#1}}}}
+\newcommand{\resumesection}[1]{\noindent\underline{\makebox[\textwidth][l]{\scalefont{1.1}\textbf{#1}}}}
 
 \begin{document}
 """
+    
+    def _info(self, src: SimpleNamespace) -> str:
+        result_list = [
+            r"\begin{center}",
+            r"{\Huge \textbf{" + src.name + r"}} \\ [0.5em]",
+            r"\small \href{mailto:" + src.info.email + r"}{" + src.info.email + r"} {\textbar }",
+            r"\small " + src.info.phone + r" {\textbar }",
+            r"\small Website: \href{https://www." + src.info.website + r"}{" + src.info.website + r"} {\textbar }",
+            r"\small LinkedIn: \href{https://www.linkedin.com/in/" + src.info.linkedin + r"}{" + src.info.linkedin + r"} \\",
+            r"\small GitHub: \href{https://www.github.com/" + src.info.github + r"}{" + src.info.github + r"} {\textbar }",
+            r"\small Hugging Face: \href{https://www.huggingface.co/" + src.info.hugging_face + r"}{" + src.info.hugging_face + r"}",
+        ]
+        # Add miscellaneous information if it exists
+        for i, miscellany in enumerate(src.info.miscellaneous):
+            to_append = r"\small " + miscellany
+            # Only add the separator if it's not the last item in the list
+            if i < len(src.info.miscellaneous) - 1:
+                to_append += r" {\textbar }"
+            result_list.append(to_append)
 
-    def render(self, src: str, dest: str) -> None:
-        parser = YamlParser(src)
-        data = parser.load()
-        with open(dest, 'w') as f:
+        result_list.append(r"\end{center}")
+        return '\n'.join(result_list)
+
+    def _education(self, src: SimpleNamespace) -> str:
+        result_list = [
+            r"\resumesection{EDUCATION}",
+            r"\textbf{" + src.education.university.replace('&', r"\&") + r"} \hfill " + src.education.location + r"\\",
+            r"\textit{" + src.education.degree + r"} \hfill \textit{" + f"{src.education.start} - {src.education.end}" + r"}",
+            r"\begin{itemize}",
+            r"\item \textbf{GPA:} " + str(src.education.gpa),
+            r"\item \textbf{Relevant Coursework:} " + ', '.join(src.education.courses),
+            r"\end{itemize}",
+        ]
+        return '\n'.join(result_list)
+
+    def render(self, src: SimpleNamespace) -> None:
+        with open(self._dest, 'w') as f:
             f.write(self._preamble())
-
+            f.write(self._info(src))
+            f.write(self._education(src))
+            f.write(r"\end{document}")

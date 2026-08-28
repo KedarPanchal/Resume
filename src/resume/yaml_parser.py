@@ -55,7 +55,8 @@ class YamlParser:
         return result if result else None
     
     def _to_object(self, data: dict) -> SimpleNamespace:
-        objectified = SimpleNamespace(**data)
+        clean_data = {k.replace("-", "_"): v for k, v in data.items()}
+        objectified = SimpleNamespace(**clean_data)
         for key, value in data.items():
             if isinstance(value, dict):
                 setattr(objectified, key, self._to_object(value))
@@ -70,7 +71,7 @@ class YamlParser:
         for key, value in view.items():
             if not isinstance(value, dict) and value is not None:
                 raise ValueError("Top-level values in the view file must be fields.")
-            result = self._load_helper(self._data, key, value)
-            if result is not None:
+            if (result := self._load_helper(self._data, key, value)) is not None:
                 result_dict[key] = result
+
         return self._to_object(result_dict)

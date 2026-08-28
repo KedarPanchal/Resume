@@ -1,9 +1,12 @@
+name:
+
 info:
 education:
   include:
     - university
     - degree
     - location
+    - gpa
     - start
     - end
     - courses:
