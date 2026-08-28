@@ -1,8 +1,9 @@
-resume.*
-!resume.tex
-!resume.view.yaml
-
 dist
 
 .DS_Store
 **/__pycache__/
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
