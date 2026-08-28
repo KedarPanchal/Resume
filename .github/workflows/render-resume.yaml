@@ -12,10 +12,9 @@ jobs:
   render:
     runs-on: ubuntu-latest
     container:
-      image: python:3.12-slim
+      image: ghcr.io/astral-sh/uv:debian
     steps:
       - uses: actions/checkout@v7
-      - run: curl -LsSf https://astral.sh/uv/install.sh | sh
       - run: uv run resume
       - uses: actions/upload-artifact@v7
         with:
