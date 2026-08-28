@@ -91,9 +91,51 @@ class LatexRenderer(Renderer):
         ]
         return '\n'.join(result_list)
 
+    def _experience(self, src: SimpleNamespace) -> str:
+        result_list = [
+            r"\resumesection{WORK EXPERIENCE}",
+        ]
+        for experience in src.experience:
+            result_list += [
+                r"\noindent\textbf{" + experience.company.replace('&', r"\&") + r"} \hfill " + experience.location + r"\\",
+                r"\textit{" + experience.title + r"} \hfill \textit{" + f"{experience.start} - {experience.end}" + r"}",
+                r"\begin{itemize}",
+                *[r"\item " + bullet.replace('%', r"\%") for bullet in experience.bullets],
+                r"\end{itemize}",
+            ]
+        return '\n'.join(result_list)
+
+    def _projects(self, src: SimpleNamespace) -> str:
+        result_list = [
+            r"\resumesection{PROJECTS}",
+        ]
+        for project in src.projects:
+            result_list += [
+                r"\noindent\textbf{" + project.title + r"} \hfill \textit{" + f"{project.start} - {project.end}" + r"}",
+                r"\begin{itemize}",
+                *[r"\item " + bullet.replace('%', r"\%") for bullet in project.bullets],
+                r"\end{itemize}",
+            ]
+        return '\n'.join(result_list)
+    
+    def _skills_certifications(self, src: SimpleNamespace) -> str:
+        result_list = [
+            r"\resumesection{SKILLS \& CERFIFICATIONS}",
+            r"\begin{itemize}",
+            r"\item \textbf{Programming Languages:} " + ', '.join(src.skills.languages),
+            r"\item \textbf{Frameworks:} " + ', '.join(src.skills.frameworks),
+            r"\item \textbf{Tools:} " + ', '.join(src.skills.tools),
+            r"\item \textbf{Certifications:} " + ', '.join(map(lambda c: c.replace('&', r"\&"), src.certifications)),
+            r"\end{itemize}"
+        ]
+        return '\n'.join(result_list)
+
     def render(self, src: SimpleNamespace) -> None:
         with open(self._dest, 'w') as f:
             f.write(self._preamble())
             f.write(self._info(src))
             f.write(self._education(src))
+            f.write(self._experience(src))
+            f.write(self._projects(src))
+            f.write(self._skills_certifications(src))
             f.write(r"\end{document}")

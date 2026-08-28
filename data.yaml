@@ -60,6 +60,7 @@ experience:
       - Improved response time and context retrieval by connecting to LLM-optimized databases such as Redis and ChromaDB.
   - title: Automation Developer
     company: MathNMore LLC
+    location: Austin, TX
     start: "July 2022"
     end: "July 2025"
     bullets:
