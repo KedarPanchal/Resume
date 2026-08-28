@@ -6,6 +6,7 @@ on:
       - data.yaml
       - resume.view.yaml
       - .github/workflows/render-resume.yaml
+      - src/render/renderer.py
 permissions:
   contents: write
 jobs:
@@ -16,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - run: mkdir -p dist
-      - run: uv run resume
+      - run: uv run render
       - uses: actions/upload-artifact@v7
         with:
           name: resume-tex

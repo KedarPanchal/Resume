@@ -1,5 +1,5 @@
 [project]
-name = "resume"
+name = "render"
 version = "0.1.0"
 description = "Scripts to build my resume and portfolio website."
 readme = "README.md"
@@ -12,7 +12,7 @@ dependencies = [
 ]
 
 [project.scripts]
-resume = "resume:main"
+render = "render:main"
 
 [build-system]
 requires = ["uv_build>=0.12.5,<0.13.0"]
