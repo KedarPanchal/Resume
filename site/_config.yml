@@ -21,9 +21,6 @@
 title: Kedar Panchal
 email: kedar.t.panchal@outlook.com
 description: >- # this means to ignore newlines until "baseurl:"
-  This is the portfolio website for Kedar Panchal, a Computer Science
-  and Cybersecurity Honors student at Texas A&M University. This website
-  contains information about Kedar's projects, research, and professional experience.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: KedarPanchal
