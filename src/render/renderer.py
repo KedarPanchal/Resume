@@ -16,10 +16,6 @@ class Section(Enum):
 
 class Renderer(ABC):
     @abstractmethod
-    def section_ordering(self) -> dict[Section, int]:
-        pass
-
-    @abstractmethod
     def render(self, src: SimpleNamespace) -> None:
         pass
 
@@ -27,16 +23,6 @@ class Renderer(ABC):
 class LatexRenderer(Renderer):
     def __init__(self, dest: str):
         self._dest = dest
-
-    def section_ordering(self) -> dict[Section, int]:
-        return {
-            Section.INFO: 0,
-            Section.EDUCATION: 1,
-            Section.EXPERIENCE: 2,
-            Section.PROJECTS: 3,
-            Section.SKILLS: 4,
-            Section.CERTIFICATIONS: 4
-        }
 
     def _preamble(self) -> str:
         return r"""
@@ -139,3 +125,27 @@ class LatexRenderer(Renderer):
             f.write(self._projects(src))
             f.write(self._skills_certifications(src))
             f.write(r"\end{document}")
+
+
+class JekyllRenderer(Renderer):
+    def __init__(self, dest: str):
+        self._dest = dest
+
+    def _experience(self, src: SimpleNamespace, dest: str) -> None:
+        PREAMBLE_STRING = """
+---
+layout: page
+---
+# Work Experience
+"""
+        with open(f"{dest}/experience.md", 'w') as md:
+            md.write(PREAMBLE_STRING)
+            for experience in src.experience:
+                result_list = [
+                    f"## {experience.title} at {experience.company}",
+                    f"*{experience.location}*, {experience.start} - {experience.end}",
+                    [f"- {bullet}" for bullet in experience.bullets]
+                ]
+
+    def render(self, src: SimpleNamespace) -> None:
+        self._experience(src, self._dest)
