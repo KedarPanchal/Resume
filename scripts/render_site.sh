@@ -1,6 +1,7 @@
 #!/bin/zsh
 
 mkdir -p dist/site
-uv run resume
-cp -r dist/site site/_rendered
-cd site && bundle exec
+uv run render
+mkdir -p site/_rendered
+cp -r dist/site/. site/
+cd site && bundle exec jekyll serve

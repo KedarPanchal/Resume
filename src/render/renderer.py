@@ -132,20 +132,21 @@ class JekyllRenderer(Renderer):
         self._dest = dest
 
     def _experience(self, src: SimpleNamespace, dest: str) -> None:
-        PREAMBLE_STRING = """
----
+        PREAMBLE_STRING = """---
 layout: page
+title: Work Experience
+permalink: /experience/
 ---
-# Work Experience
 """
-        with open(f"{dest}/experience.md", 'w') as md:
+        with open(f"{dest}/rendered_experience.md", 'w') as md:
             md.write(PREAMBLE_STRING)
             for experience in src.experience:
                 result_list = [
-                    f"## {experience.title} at {experience.company}",
+                    f"### {experience.title} at {experience.company}",
                     f"*{experience.location}*, {experience.start} - {experience.end}",
-                    [f"- {bullet}" for bullet in experience.bullets]
+                    *[f"- {bullet}" for bullet in experience.bullets]
                 ]
+                md.write('\n'.join(result_list) + '\n\n')
 
     def render(self, src: SimpleNamespace) -> None:
         self._experience(src, self._dest)

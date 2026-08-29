@@ -2,8 +2,10 @@ dist
 
 .DS_Store
 **/__pycache__/
-_site
-.sass-cache
-.jekyll-cache
-.jekyll-metadata
-vendor
+
+site/rendered_*
+site/_site
+site/.sass-cache
+site/.jekyll-cache
+site/.jekyll-metadata
+site/vendor
