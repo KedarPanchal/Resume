@@ -136,6 +136,8 @@ class JekyllRenderer(Renderer):
 layout: page
 title: Work Experience
 permalink: /experience/
+menu: true
+order: 1
 ---
 """
         with open(f"{dest}/rendered_experience.md", 'w') as md:
