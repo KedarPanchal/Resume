@@ -71,6 +71,7 @@ projects:
   - title: "IMC Prosperity 4"
     start: "April 2026"
     end: "May 2026"
+    url: https://github.com/KedarPanchal/IMC-Prosperity-4
     bullets:
       - Analyzed commodity market data to place within top 2.6% of competitors by building dashboard with Python and Matplotlib.
       - Classified competing informed traders and detected outliers by implementing k-means clustering and isolation tree algorithms.
@@ -78,6 +79,7 @@ projects:
   - title: Mr. Breathe
     start: "January 2026"
     end: "January 2026"
+    url: https://devpost.com/software/mr-breathe
     bullets:
       - Detected and classified respiratory diseases by inventing intelligent spirometer.
       - Interfaced spirometer with Swift iOS app for real-time data analysis using custom bluetooth code.
@@ -85,12 +87,14 @@ projects:
   - title: Hello World from Scratch
     start: "September 2025"
     end: "December 2025"
+    url: https://github.com/CSCE-120-Honors-Project/Hello-World-from-Scratch
     bullets:
       - Developed bare-metal bootloader on ARM Cortex A53 chip to load and execute program from disk.
       - Wrote FAT32 filesystem and VirtIO disk drivers in C.
   - title: GIMP AI Inpainter
     start: "January 2025"
     end: "March 2025"
+    url: https://github.com/KedarPanchal/GIMP-AI-Inpainting
     bullets:
       - Added generative AI inpainting capabilities to GIMP 3.0 by developing Python plugin that leveraged Hugging Face Diffusers.
 

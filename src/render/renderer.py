@@ -1,7 +1,11 @@
 import yaml
+import requests
+import urllib.parse
+
 from abc import ABC, abstractmethod
 from enum import Enum
 from types import SimpleNamespace
+from bs4 import BeautifulSoup
 from .yaml_parser import YamlParser
 
 
@@ -130,18 +134,23 @@ class LatexRenderer(Renderer):
 class JekyllRenderer(Renderer):
     def __init__(self, dest: str):
         self._dest = dest
+        self._order_index = 1
 
-    def _experience(self, src: SimpleNamespace, dest: str) -> None:
-        PREAMBLE_STRING = """---
+    def _make_preamble(self, title: str, permalink: str) -> str:
+        result = f"""---
 layout: page
-title: Work Experience
-permalink: /experience/
+title: {title}
+permalink: {permalink}
 menu: true
-order: 1
+order: {self._order_index}
 ---
 """
+        self._order_index += 1
+        return result
+
+    def _experience(self, src: SimpleNamespace, dest: str) -> None:
         with open(f"{dest}/rendered_experience.md", 'w') as md:
-            md.write(PREAMBLE_STRING)
+            md.write(self._make_preamble("Work Experience", "/experience/"))
             for experience in src.experience:
                 result_list = [
                     f"### {experience.title} at {experience.company}",
@@ -150,5 +159,41 @@ order: 1
                 ]
                 md.write('\n'.join(result_list) + '\n\n')
 
+    def _get_opengraph_url(self, url: str) -> str:
+        html = requests.get(url).text
+        soup = BeautifulSoup(html, 'html.parser')
+        og_tag = soup.find("meta", property="og:image")
+        if og_tag and og_tag.get("content"):
+            return og_tag["content"]
+        placehold_params = {"text": url}
+        return f"https://placehold.co/400x400?{urllib.parse.urlencode(placehold_params)}"
+
+    def _projects(self, src: SimpleNamespace, dest: str) -> None:
+        with open(f"{dest}/rendered_projects.md", 'w') as md:
+            md.write(self._make_preamble("Projects", "/projects/"))
+
+            result_list = []
+            columns = ["left_column", "right_column"]
+            column_index = 0
+
+            for project in src.projects:
+                text_column = f"{columns[column_index % 2]}_{column_index}"
+                image_column = f"{columns[(column_index + 1) % 2]}_{column_index}"
+                result_list = [
+                    f"### [{project.title}]({project.url})",
+                    "{% capture " + text_column + " %}",
+                    f"*{project.start} - {project.end}*",
+                    *[f"- {bullet}" for bullet in project.bullets],
+                    "{% endcapture %}"
+                    "{% capture " + image_column + " %}",
+                    f"![{project.title}]({self._get_opengraph_url(project.url)})",
+                    "{% endcapture %}",
+                    "{% include two-column.html col1=" + f"left_column_{column_index}" + " col2=" + f"right_column_{column_index}" + " %}",
+                    "<hr />"
+                ]
+                md.write('\n'.join(result_list) + '\n\n')
+                column_index += 1
+
     def render(self, src: SimpleNamespace) -> None:
         self._experience(src, self._dest)
+        self._projects(src, self._dest)
