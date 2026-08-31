@@ -9,15 +9,6 @@ from bs4 import BeautifulSoup
 from .yaml_parser import YamlParser
 
 
-class Section(Enum):
-    INFO = "info"
-    EDUCATION = "education"
-    EXPERIENCE = "experience"
-    PROJECTS = "projects"
-    SKILLS = "skills"
-    CERTIFICATIONS = "certifications"
-
-
 class Renderer(ABC):
     @abstractmethod
     def render(self, src: SimpleNamespace) -> None:
@@ -149,15 +140,17 @@ order: {self._order_index}
         return result
 
     def _experience(self, src: SimpleNamespace, dest: str) -> None:
+        result_list = []
+
         with open(f"{dest}/rendered_experience.md", 'w') as md:
             md.write(self._make_preamble("Work Experience", "/experience/"))
             for experience in src.experience:
-                result_list = [
+                result_list += [
                     f"### {experience.title} at {experience.company}",
                     f"*{experience.location}*, {experience.start} - {experience.end}",
                     *[f"- {bullet}" for bullet in experience.bullets]
                 ]
-                md.write('\n'.join(result_list) + '\n\n')
+            md.write('\n'.join(result_list) + '\n\n')
 
     def _get_opengraph_url(self, url: str) -> str:
         html = requests.get(url).text
@@ -169,12 +162,12 @@ order: {self._order_index}
         return f"https://placehold.co/400x400?{urllib.parse.urlencode(placehold_params)}"
 
     def _projects(self, src: SimpleNamespace, dest: str) -> None:
+        result_list = []
+        columns = ["left_column", "right_column"]
+        column_index = 0
+
         with open(f"{dest}/rendered_projects.md", 'w') as md:
             md.write(self._make_preamble("Projects", "/projects/"))
-
-            result_list = []
-            columns = ["left_column", "right_column"]
-            column_index = 0
 
             for project in src.projects:
                 text_column = f"{columns[column_index % 2]}_{column_index}"
@@ -194,6 +187,21 @@ order: {self._order_index}
                 md.write('\n'.join(result_list) + '\n\n')
                 column_index += 1
 
+    def _skills_certifications(self, src: SimpleNamespace, dest: str) -> None:
+        result_list = []
+
+        with open(f"{dest}/rendered_skills_certifications.md", 'w') as md:
+            md.write(self._make_preamble("Skills & Certifications", "/skills-certifications/"))
+            for category, items in src.skills.__dict__.items():
+                result_list += [
+                    "{% capture " + category + "_list %}",
+                    *[f"- {item}" for item in items],
+                    "{% endcapture %}",
+                    "{% include dropdown-list.html title=\"" + category.title() + f"\" content={category}_list" + " %}"
+                ]
+            md.write('\n'.join(result_list) + '\n\n')
+
     def render(self, src: SimpleNamespace) -> None:
         self._experience(src, self._dest)
         self._projects(src, self._dest)
+        self._skills_certifications(src, self._dest)
