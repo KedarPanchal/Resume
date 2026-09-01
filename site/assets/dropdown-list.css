@@ -1,0 +1,12 @@
+details {
+    cursor: pointer;
+}
+
+summary {
+    font-size: 1.5em;
+}
+
+.list-container {
+   padding-left: 1em; 
+   font-size: 1.1em;
+}

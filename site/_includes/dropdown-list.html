@@ -1,4 +1,8 @@
-<details style="cursor: pointer;">
+<link rel="stylesheet" href="{{ '/assets/css/dropdown-list.css' | relative_url }}">
+
+<details>
     <summary><strong>{{ include.title }}</strong></summary>
-    {{ include.content | markdownify }}
+    <div class="list-container">
+        {{ include.content | markdownify }}
+    </div>
 </details>

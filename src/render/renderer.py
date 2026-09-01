@@ -199,6 +199,12 @@ order: {self._order_index}
                     "{% endcapture %}",
                     "{% include dropdown-list.html title=\"" + category.title() + f"\" content={category}_list" + " %}"
                 ]
+            result_list += [
+                "{% capture certifications_list %}",
+                *[f"- {certification}" for certification in src.certifications],
+                "{% endcapture %}",
+                "{% include dropdown-list.html title=\"Certifications\" content=certifications_list %}"
+            ]
             md.write('\n'.join(result_list) + '\n\n')
 
     def render(self, src: SimpleNamespace) -> None:
