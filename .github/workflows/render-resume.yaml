@@ -17,6 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - run: mkdir -p dist/resume
+      - run: mkdir -p dist/site
       - run: uv run render
       - uses: actions/upload-artifact@v7
         with:
