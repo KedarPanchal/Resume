@@ -16,12 +16,12 @@ jobs:
       image: ghcr.io/astral-sh/uv:debian
     steps:
       - uses: actions/checkout@v7
-      - run: mkdir -p dist
+      - run: mkdir -p dist/resume
       - run: uv run render
       - uses: actions/upload-artifact@v7
         with:
           name: resume-tex
-          path: dist/resume.tex
+          path: dist/resume/resume.tex
 
   build:
     runs-on: ubuntu-latest
