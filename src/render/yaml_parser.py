@@ -22,21 +22,30 @@ class YamlParser:
                 result = source[key] if key in source else None
         elif isinstance(value["include"], list):
             for item in value["include"]:
-                # Add item raw to result if it's a string
-                if isinstance(item, str):
-                    if item not in source[key]:
-                        raise ValueError(f"Item '{item}' not found in source for key '{key}'.")
-                    result[item] = source[key][item]
                 # Index into the source dictionary if item is an integer
-                elif isinstance(item, int):
-                    target_key = list(source[key].keys())[item]
-                    result[target_key] = source[key][target_key]
-                # Handle nested dictionaries
-                elif isinstance(item, dict):
-                    inner_key = next(iter(item))
-                    result[inner_key] = self._load_helper(source[key], inner_key, item[inner_key])
+                if isinstance(item, int):
+                    # Since indexing implies that source[key] is a list, result must be a list as well
+                    # This means that we cannot mix and match dictionary keys and indices
+                    if not isinstance(result, list) and result:
+                        raise ValueError("Cannot mix indexing and non-indexing snapshots")
+                    result = result or []
+                    result.append(source[key][item])  # type: ignore
                 else:
-                    raise ValueError(f"Expected a str, int, or dict in 'include' for key '{key}', but got {type(item)}.")
+                    # Since indexing by key implies source[key] is a dictionary, result must be a dictionary as well
+                    # This means we cannot mix and match dictionary keys and indices
+                    if not isinstance(result, dict):
+                        raise ValueError("Cannot mix indexing and non-indexing snapshots")
+                    # Add strings raw
+                    if isinstance(item, str):
+                        if item not in source[key]:
+                            raise ValueError(f"Item '{item}' not found in source for key '{key}'.")
+                        result[item] = source[key][item]
+                    # Handle nested dictionaries
+                    elif isinstance(item, dict):
+                        inner_key = next(iter(item))
+                        result[inner_key] = self._load_helper(source[key], inner_key, item[inner_key])
+                    else:
+                        raise ValueError(f"Expected a str, int, or dict in 'include' for key '{key}', but got {type(item)}.")
         else:
             raise ValueError(f"Expected a list or 'all' for 'include' in key '{key}', but got {type(value['include'])}.")
         

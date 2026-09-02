@@ -15,8 +15,18 @@ education:
           - Multivariable Calculus
 
 experience:
+  include:
+    - 0
+    - 1
+    - 2
+    - 4
 
 projects:
+  include:
+    - 0
+    - 1
+    - 2
+    - 5
 
 skills:
   include:
@@ -27,3 +37,7 @@ skills:
     - tools
 
 certifications:
+  include:
+    - 2
+    - 3
+    - 4
