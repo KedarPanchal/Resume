@@ -55,7 +55,12 @@ class YamlParser:
                 raise ValueError(f"Expected a list for 'exclude' in key '{key}', but got {type(value['exclude'])}.")
             if value["exclude"] == "all":
                 return None
-            exclude_set = set(value["exclude"])
+            if all([isinstance(i, str) for i in value["exclude"]]):
+                exclude_set = set(value["exclude"])
+            elif all([isinstance(i, int) for i in value["exclude"]]) and isinstance(source[key], list):
+                exclude_set = set([source[key][i] for i in value["exclude"]])
+            else:
+                raise ValueError(f"Expected a list of strings or integers for 'exclude' in key '{key}', but got {value['exclude']}.")
             # Handle based on whether a list or dictionary was included
             if isinstance(result, dict):
                 result = {k: v for k, v in result.items() if k not in exclude_set}
