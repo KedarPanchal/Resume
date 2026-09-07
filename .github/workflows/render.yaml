@@ -58,14 +58,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: render
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v7
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 4.0.6
           bundler-cache: true
           working-directory: site
-      - name: Checkout Repository
-        uses: actions/checkout@v7
       - name: Download Jekyll Site Artifact
         uses: actions/download-artifact@v7
         with:
