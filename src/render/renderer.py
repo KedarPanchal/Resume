@@ -146,11 +146,11 @@ order: {self._order_index}
             md.write(self._make_preamble("Work Experience", "/experience/"))
             for experience in src.experience:
                 result_list += [
-                    f"### {experience.title} at {experience.company}",
+                    f"\n### {experience.title} at {experience.company}",
                     f"*{experience.location}*, {experience.start} - {experience.end}",
                     *[f"- {bullet}" for bullet in experience.bullets]
                 ]
-            md.write('\n'.join(result_list) + '\n\n')
+            md.write('\n'.join(result_list))
 
     def _get_opengraph_url(self, url: str) -> str:
         html = requests.get(url).text
