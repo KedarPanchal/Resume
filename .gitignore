@@ -1,3 +1,11 @@
-resume.*
-!resume.tex
+dist
+
 .DS_Store
+**/__pycache__/
+
+site/rendered_*
+site/_site
+site/.sass-cache
+site/.jekyll-cache
+site/.jekyll-metadata
+site/vendor

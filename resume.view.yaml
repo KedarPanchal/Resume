@@ -1,0 +1,43 @@
+name:
+
+info:
+education:
+  include:
+    - university
+    - degree
+    - location
+    - gpa
+    - start
+    - end
+    - courses:
+        exclude:
+          - Programming Languages
+          - Multivariable Calculus
+
+experience:
+  include:
+    - 0
+    - 1
+    - 2
+    - 4
+
+projects:
+  include:
+    - 0
+    - 1
+    - 2
+    - 5
+
+skills:
+  include:
+    - languages:
+        exclude:
+          - Haskell
+    - frameworks
+    - tools
+
+certifications:
+  include:
+    - 2
+    - 3
+    - 4
