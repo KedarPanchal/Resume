@@ -1,8 +1,10 @@
-<div style="display: flex; flex-wrap; align-items: center; justify-content: center; gap: 50px;">
-    <div style="flex: 1; min-width: 300px;">
+<link rel="stylesheet" href="{{ '/assets/css/two-column.css' | relative_url }}">
+
+<div class="column-container">
+    <div class="column">
         {{ include.col1 | markdownify }}
     </div>
-    <div style="flex: 1; min-width: 300px;">
+    <div class="column">
         {{ include.col2 | markdownify }}
     </div>
 </div>
