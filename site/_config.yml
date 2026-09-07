@@ -32,6 +32,8 @@ plugins:
 
 # Appearance
 accent_image: /assets/images/side_panel.jpg
+accent_color: "#ff1770"
+theme_color: "#0000ff"
 
 # Exclude from processing.
 # The following items will not be processed, by default.

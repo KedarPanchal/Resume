@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="{{ '/assets/css/experience-listing.css' | relative_url }}">
+
+<section>
+    <span class="job-header">
+        <p class="job-title">{{ include.title }}</p>
+        <p> • </p>
+        <p class="company-name"><em>{{ include.company }}</em></p>
+    </span>
+    <span class="metadata">
+        <p class="location"><em>{{ include.location }}</em></p>
+        <p> • </p>
+        <p class="date">{{ include.start }} – {{ include.end }}</p>
+    </span>
+    {{ include.bullets | markdownify }}
+    <hr>
+</section>

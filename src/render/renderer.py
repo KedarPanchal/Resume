@@ -144,11 +144,19 @@ order: {self._order_index}
 
         with open(f"{dest}/rendered_experience.md", 'w') as md:
             md.write(self._make_preamble("Work Experience", "/experience/"))
-            for experience in src.experience:
+            for i, experience in enumerate(src.experience):
                 result_list += [
-                    f"\n### {experience.title} at {experience.company}",
-                    f"*{experience.location}*, {experience.start} - {experience.end}",
-                    *[f"- {bullet}" for bullet in experience.bullets]
+                    "{% capture experience_" + str(i) + " %}",
+                    *[f"- {bullet}" for bullet in experience.bullets],
+                    "{% endcapture %}",
+                    "{% include experience-listing.html "
+                      + f"title='{experience.title}' "
+                      + f"company='{experience.company}' "
+                      + f"location='{experience.location}' "
+                      + f"start='{experience.start}' "
+                      + f"end='{experience.end}' "
+                      + f"bullets=experience_{i} "
+                      + " %}"
                 ]
             md.write('\n'.join(result_list))
 

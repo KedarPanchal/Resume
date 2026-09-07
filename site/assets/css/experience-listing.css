@@ -1,0 +1,50 @@
+.job-header {
+    font-size: 1.17em;
+    position: relative;
+    padding-bottom: 0.25em;
+}
+
+.job-header p {
+    display: inline-block;
+    margin-bottom: 0.25em;
+}
+
+.job-title {
+    position: relative;
+    z-index: 1;
+}
+
+@media (min-width: 768px) {
+    .job-title::after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        left: 1.4rem;
+        bottom: 0.3rem;
+        width: min(98%, calc(90vw - 1.4rem));
+        height: 0.15rem;
+        background: #ff1770;
+    }
+}
+
+.job-title {
+    font-weight: bold;
+}
+
+.company-name {
+    color: #7e7e7e;
+}
+
+.metadata {
+    display: block;
+    margin-bottom: 0.1em;
+    font-size: 0.9em;
+}
+
+.metadata p {
+    display: inline;
+}
+
+.date {
+    color: #7e7e7e;
+}
