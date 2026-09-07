@@ -8,6 +8,8 @@ on:
       - site.view.yaml
       - .github/workflows/render.yaml
       - src/render/renderer.py
+    branches:
+      - main
 permissions:
   contents: write
   id-token: write
