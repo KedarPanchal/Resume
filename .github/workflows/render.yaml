@@ -6,7 +6,7 @@ on:
       - data.yaml
       - resume.view.yaml
       - site.view.yaml
-      - .github/workflows/render-resume.yaml
+      - .github/workflows/render.yaml
       - src/render/renderer.py
 permissions:
   contents: write
