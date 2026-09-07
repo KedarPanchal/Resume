@@ -2,11 +2,48 @@ details {
     cursor: pointer;
 }
 
-summary {
+.dropdown-item {
+    position: relative;
+    display: inline-block;
     font-size: 1.5em;
 }
 
+.dropdown-item::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 1rem;
+    bottom: 0.3rem;
+    width: min(98%, calc(90vw - 1.4rem));
+    height: 0.3rem;
+    background: #ff1770;
+}
+
 .list-container {
-   padding-left: 1em; 
-   font-size: 1.1em;
+    padding-left: 1em; 
+    font-size: 1.1em;
+}
+
+.short-list ul {
+    list-style-type: none;
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+}
+
+.short-list li {
+    display: inline;
+}
+
+.short-list li:not(:last-child)::after {
+    content: " • ";
+}
+
+.long-list li::marker {
+    content: "• ";
+    color: #ff1770;
+}
+
+.long-list hr {
+    margin-top: 0.5em;
+    margin-bottom: 0.2em;
 }

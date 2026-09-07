@@ -138,7 +138,7 @@ projects:
     bullets:
       - Developed bare-metal bootloader on ARM Cortex A53 chip to load and execute program from disk.
       - Wrote FAT32 filesystem and VirtIO disk drivers in C.
-  - title: FLAN T5-Small Fine-Tuend for Summarization
+  - title: FLAN T5-Small Fine-Tuned for Summarization
     start: July 2025
     end: July 2025
     url: https://huggingface.co/KedarPanchal/flan-t5-small-summary-finetune

@@ -205,13 +205,17 @@ order: {self._order_index}
                     "{% capture " + category + "_list %}",
                     *[f"- {item}" for item in items],
                     "{% endcapture %}",
-                    "{% include dropdown-list.html title=\"" + category.title() + f"\" content={category}_list" + " %}"
+                    "{% include dropdown-list.html " 
+                      + f"title='{category.title()}' " 
+                      + f"content={category}_list "
+                      + f"short=true"
+                      + " %}"
                 ]
             result_list += [
                 "{% capture certifications_list %}",
                 *[f"- {certification}" for certification in src.certifications],
                 "{% endcapture %}",
-                "{% include dropdown-list.html title=\"Certifications\" content=certifications_list %}"
+                "{% include dropdown-list.html title='Certifications' content=certifications_list %}"
             ]
             md.write('\n'.join(result_list) + '\n\n')
 
