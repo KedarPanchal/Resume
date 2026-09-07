@@ -10,6 +10,8 @@ on:
       - src/render/renderer.py
 permissions:
   contents: write
+  id-token: write
+  pages: write
 jobs:
   render:
     runs-on: ubuntu-latest
