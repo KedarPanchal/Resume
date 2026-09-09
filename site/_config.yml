@@ -35,6 +35,13 @@ accent_image: /assets/images/side_panel.jpg
 accent_color: "#ff1770"
 theme_color: "#0000ff"
 
+# Footer settings
+legal:
+  - title: "License"
+    url: "https://www.apache.org/licenses/LICENSE-2.0.txt"
+  - title: "Generated using Kedar Panchal's Site and Resume Generator"
+    url: "https://github.com/KedarPanchal/kedarpanchal.github.io"
+
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
