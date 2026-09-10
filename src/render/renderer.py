@@ -51,7 +51,11 @@ class LatexRenderer(Renderer):
         ]
         # Add miscellaneous information if it exists
         for i, miscellany in enumerate(src.info.miscellaneous):
-            to_append = r"\small " + miscellany
+            # Prefix with a text bar to separate the first item from Hugging Face
+            if i == 0:
+                to_append = r"{\textbar } \small " + miscellany
+            else:
+                to_append = r"\small " + miscellany
             # Only add the separator if it's not the last item in the list
             if i < len(src.info.miscellaneous) - 1:
                 to_append += r" {\textbar }"

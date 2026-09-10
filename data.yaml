@@ -37,11 +37,11 @@ experience:
     start: June 2026
     end: August 2026
     bullets:
-      - Updated legacy C code to eliminate memory vulnerabilities by architecting and implementing agentic code translation system.
-      - Reduced agent hallucinations by developing self-improving feedback loop that evaluated code and created test cases.
+      - Updated legacy C code to eliminate memory vulnerabilities by designing locally-deployed agentic code translation system.
+      - Improved agent accuracy for 2000+ LOC repositories with a 7-stage agent-driven code evaluation and test generation loop.
       - Automated documentation generation, code linting, and deployment by designing GitLab CI/CD pipelines.
-      - Reduced deployment time by creating Ansible playbook to configure multi-container Podman environment on SELinux server.
-      - Communicated project progress to executive stakeholders and demonstrated product to senior leadership.
+      - Reduced deployment time by 92% by creating Ansible playbook to configure multi-container Podman application.
+      - Communicated project progress across 3 product demonstrations to executive stakeholders and senior leadership.
   - title: Research Assistant, Department of Computer Science
     company: Texas A&M University
     location: College Station, TX
@@ -64,8 +64,8 @@ experience:
     start: August 2025
     end: December 2025
     bullets:
-      - Created system dynamics models in Vensim to generate synthetic datasets for ML-powered dairy farm analysis. 
-      - Researched components of Water-Energy-Food nexus in dairy farms to create accurate simulations. 
+      - Created 2 system dynamics models in Vensim to generate synthetic datasets for ML-powered dairy farm analysis. 
+      - Researched over 30 components of Water-Energy-Food nexus in dairy farms to create accurate simulations. 
       - Drafted system dynamics research paper for conference presentation.
   - title: Automation Developer
     company: MathNMore LLC
