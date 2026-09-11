@@ -16,6 +16,29 @@ permissions:
   id-token: write
   pages: write
 jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      resume: $ {{ steps.filter.outputs.resume }}
+      site: $ {{ steps.filter.outputs.site }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v7
+      - name: Filter Changes
+        id: filter
+        uses: dorny/paths-filter@v4
+        with:
+          filters: |
+            resume:
+              - "data.yaml"
+              - "resume.view.yaml"
+              - "src/render/renderer.py"
+            site:
+              - "data.yaml"
+              - "site.view.yaml"
+              - "src/render/renderer.py"
+              - "site/**"
+
   render:
     runs-on: ubuntu-latest
     container:
@@ -43,7 +66,8 @@ jobs:
 
   build-resume:
     runs-on: ubuntu-latest
-    needs: render
+    needs: [changes, render]
+    if: ${{ needs.changes.outputs.resume == 'true' }}
     container:
       image: texlive/texlive:latest
     steps:
@@ -61,7 +85,8 @@ jobs:
 
   build-site:
     runs-on: ubuntu-latest
-    needs: render
+    needs: [changes, render]
+    if: ${{ needs.changes.outputs.site == 'true' }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v7
